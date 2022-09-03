@@ -8,8 +8,8 @@
 #include <QList>
 #include <QDebug>
 
-#include "func.h"
-#include "exception.h"
+//#include "func.h"
+//#include "exception.h"
 #include "arguments.h"
 
 #include <stdio.h>

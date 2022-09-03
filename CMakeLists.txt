@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9.0)
+cmake_minimum_required(VERSION 3.12.0)
 
 project(xca
 	DESCRIPTION "X Certificate and Key management"
@@ -44,9 +44,11 @@ configure_file(local.h.in local.h)
 
 ##### Libraries and executables
 
-add_executable(${CMAKE_PROJECT_NAME} img/imgres.qrc)
-add_executable(xcadoc xcadoc.cpp)
-target_include_directories(xcadoc PRIVATE "${PROJECT_SOURCE_DIR}/lib")
+add_executable(${CMAKE_PROJECT_NAME} img/imgres.qrc ${PROJECT_BINARY_DIR}/local.h)
+add_executable(xcadoc ${PROJECT_BINARY_DIR}/local.h)
+
+#target_include_directories(xcadoc PRIVATE "${PROJECT_SOURCE_DIR}/lib")
+include_directories(${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR})
 
 set(PSQL_BINDIR "")
 set(MYSQL_BINDIR "")
@@ -101,11 +103,13 @@ if (NOT OPENSSL_ROOT_DIR)
 endif()
 
 target_link_libraries(${CMAKE_PROJECT_NAME}
-	core widgets core
 	OpenSSL::Crypto
 	${QT}::Widgets ${QT}::Core ${QT}::Sql ${QT}::Help
 )
-target_link_libraries(xcadoc core ${QT}::Core)
+target_link_libraries(xcadoc
+	OpenSSL::Crypto
+	${QT}::Widgets ${QT}::Core ${QT}::Sql ${QT}::Help
+)
 
 if (APPLE)
 
