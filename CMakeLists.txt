@@ -193,10 +193,16 @@ if(APPLE)
   set(CPACK_GENERATOR "DragNDrop") #;productbuild")
 
 elseif(WIN32)
-  add_custom_command(TARGET ${CMAKE_PROJECT_NAME}
+  add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
     COMMAND ${WINDEPLOYQT_EXECUTABLE} $<TARGET_FILE:${PROJECT_NAME}>
         --dir ${CMAKE_BINARY_DIR} --compiler-runtime ${WINDEPLOY_OPTS} --verbose 2
-    COMMENT "Running windeployqt..."
+    COMMENT "Running windeployqt on ${CMAKE_PROJECT_NAME} ..."
+  )
+  add_custom_command(TARGET xcadoc POST_BUILD
+    COMMAND ${WINDEPLOYQT_EXECUTABLE} $<TARGET_FILE:xcadoc>
+        --dir ${CMAKE_BINARY_DIR} --verbose 2
+	--no-translations
+    COMMENT "Running windeployqt on xcadoc ..."
   )
   set(QT_USE_QTMAIN TRUE)
   set(CPACK_GENERATOR WIX)

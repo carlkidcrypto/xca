@@ -82,7 +82,7 @@ if(SPHINX)
   )
   add_custom_command(
 	OUTPUT ${D}/rst/arguments.rst
-	COMMAND  ${CMAKE_COMMAND} -E env "PATH=${_qt_bin_dir}:$ENV{PATH}" xcadoc rst ${D}/rst/arguments.rst
+	COMMAND xcadoc rst ${D}/rst/arguments.rst
 	COMMENT "Generate 'rst' commandline documentation"
   )
   add_dependencies(${CMAKE_PROJECT_NAME} sphinx-html)
