@@ -24,10 +24,10 @@ private slots:
 void test_asn1time::construct_op()
 {
     a1time b, a("20191125153015Z");
-    QCOMPARE(a.isValid(), true);
-    QCOMPARE(a.isUndefined(), false);
-	QCOMPARE(b == a, false);
-	QCOMPARE(b > a, true);
+    QVERIFY(a.isValid());
+    QVERIFY(!a.isUndefined());
+	QVERIFY(b != a);
+	QVERIFY(b > a);
 	b = a;
 	QCOMPARE(b , a);
 	a1time c(a.get());
