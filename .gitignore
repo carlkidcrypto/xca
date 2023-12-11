@@ -8,3 +8,4 @@ ui_*.h
 moc_*
 xca
 misc/variables.wxi
+**/build/**

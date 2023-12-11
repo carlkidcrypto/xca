@@ -39,18 +39,39 @@ To build XCA you need:
 
 ### Linux / Unix
 
- - Install the dependencies
-   ```
-   # Bookworm
-   sudo apt install build-essential libssl-dev pkg-config qtbase5-dev qttools5-dev-tools libqt5sql5 libqt5help5 cmake qttools5-dev python3-sphinxcontrib.qthelp
-   # Bullseye
-   sudo apt install build-essential libssl-dev pkg-config qtbase5-dev qttools5-dev-tools libqt5sql5 libqt5help5 cmake qttools5-dev python3-sphinx
-   ```
- - Clone: `git clone https://github.com/chris2511/xca.git`
- - Configure: `cmake -B build xca`
- - Make: `cmake --build build -j5`
- - Install: `sudo cmake --install build`
- - Or install local and copy later as root: `DESTDIR=DEST cmake --install build --prefix /usr`
+#### Ubuntu 22.04.X LTS
+
+* Install the dependencies
+
+  ```bash
+    sudo apt install build-essential libssl-dev pkg-config qtbase5-dev qttools5-dev-tools libqt5sql5 libqt5help5 cmake qttools5-dev python3-sphinxcontrib.qthelp
+  ```
+
+* Clone: `git clone https://github.com/chris2511/xca.git`
+* Configure: `cd && cmake -B build`
+* Make: `cmake --build build -j$(nproc)`
+* Install: `sudo cmake --install build`
+* Or install local and copy later as root: `DESTDIR=DEST cmake --install build --prefix /usr`
+
+#### Old Linux / Unix Instructions
+
+> Note: These are here for legacy purposes only. Please use the instructions above. If you distro is not available, consider opening
+a PR updating this readme file with what works for you.
+
+* Install the dependencies
+
+  ```bash
+    # Bookworm
+    sudo apt install build-essential libssl-dev pkg-config qtbase5-dev qttools5-dev-tools libqt5sql5 libqt5help5 cmake qttools5-dev python3-sphinxcontrib.qthelp
+    # Bullseye
+    sudo apt install build-essential libssl-dev pkg-config qtbase5-dev qttools5-dev-tools libqt5sql5 libqt5help5 cmake qttools5-dev python3-sphinx
+  ```
+
+* Clone: `git clone https://github.com/chris2511/xca.git`
+* Configure: `cmake -B build xca`
+* Make: `cmake --build build -j5`
+* Install: `sudo cmake --install build`
+* Or install local and copy later as root: `DESTDIR=DEST cmake --install build --prefix /usr`
 
 ### Apple macos
 
